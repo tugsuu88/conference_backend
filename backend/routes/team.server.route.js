@@ -8,5 +8,6 @@ module.exports = (app) => {
     app.route('/api/v1/team/addBulkMembers').post(auth, e.addBulkMembers);
     app.route('/api/v1/team/removeMember').post(auth, e.removeMember);
     app.route('/api/v1/team/removeBulkMember').post(auth, e.removeBulkMember);
-
+    app.route('/api/v1/team/getTeams').get(auth, e.getTeams);
+    app.route('/api/v1/team/getUsersOfTeam').get(auth, e.getUsersOfTeam);
 };

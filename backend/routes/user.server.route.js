@@ -6,4 +6,5 @@ module.exports = (app) => {
     app.route('/api/v1/user/updateUser').post(auth, e.updateUser);
     app.route('/api/v1/user/deleteUser').delete(auth, e.deleteUser);
     app.route('/api/v1/user/getUsers').get(auth, e.getUsers);
+    app.route('/api/v1/user/getTeamsOfUser').get(auth, e.getTeamsOfUser);
 };

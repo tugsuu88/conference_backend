@@ -210,3 +210,39 @@ exports.removeBulkMember = async function(req, res) {
         });
     }
 }
+
+exports.getTeams = async function(req, res) {
+    try {
+        const teams = await Teams.find({}).exec();
+        res.status(200).json({intResult: 0, msg: '', data : teams});
+    } catch(err) {
+        return res.status(500).json({
+            intResult: 1,
+            msg: 'error on server',
+            data : err
+        });
+    }
+}
+
+exports.getUsersOfTeam = async function(req, res) {
+    try {
+        const teamId = req.query.teamId;
+        const retList =[];
+        if(!teamId)  {
+            return res.status(200).json({intResult: 1, msg: 'team id must be entered', data : ''});
+        }
+
+        const teamMembers = await TeamMembers.find({teamId: teamId});
+        for(const member of teamMembers) {
+            const user = await Users.findOne({_id: member.userId});
+            retList.push(user);
+        }
+        res.status(200).json({intResult: 0, msg: '', data : retList});
+    } catch(err) {
+        return res.status(500).json({
+            intResult: 1,
+            msg: 'error on server',
+            data : err
+        });
+    }
+}

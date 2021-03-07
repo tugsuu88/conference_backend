@@ -11,9 +11,12 @@ const TeamSchema = new mongoose.Schema({
     },
     totalConferenceTime : {
         type: Number,
+        default: 100
+    },
+    totalUsedConferenceTime : {
+        type: Number,
         default: 0
-    }
-
+    },
 }, {timestamps: true});
 
 

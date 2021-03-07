@@ -1,4 +1,6 @@
 const Users = require('../models/UserModel');
+const TeamMembers = require('../models/TeamMembersModel');
+const Teams = require('../models/TeamModel');
 
 exports.createUser = async function (req, res) {
     try {
@@ -83,3 +85,28 @@ exports.getUsers = async function (req, res) {
         });
     }
 };
+
+exports.getTeamsOfUser = async function(req, res) {
+    try {
+        const userId = req.query.userId;
+        var retList = [];
+        if(!userId) {
+            return res.status(200).json({intResult: 1, msg: 'user id must be entered', data: ''});
+        }
+        const teamMembers = await TeamMembers.find({userId: userId}).exec();
+
+        for(const member of teamMembers) {
+            const team = await Teams.findOne({ _id: member.teamId });
+            retList.push(team);
+        }
+
+        res.json({intResult: 0, msg: '', data: retList});
+    }
+    catch(err) {
+        return res.status(500).json({
+            intResult: 1,
+            msg: 'error on server',
+            data : err
+        });
+    }
+}
