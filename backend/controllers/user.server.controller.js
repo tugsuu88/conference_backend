@@ -47,6 +47,7 @@ exports.updateUser = async function (req, res) {
         });
     }
 };
+
 exports.deleteUser = async function (req, res) {
     try {
         const { id } = req.body;
@@ -55,7 +56,7 @@ exports.deleteUser = async function (req, res) {
 
             await existUser.deleteOne();
             
-            return res.status(200).json({intResult: 0, msg: 'successfully updated', data: existUser});
+            return res.status(200).json({intResult: 0, msg: 'successfully deleted', data: existUser});
         }
 
         res.json({intResult: 1, msg: 'cant find user', data: {}});

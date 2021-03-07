@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const UserSchema = new mongoose.Schema({
+const GuestSchema = new mongoose.Schema({
     firstName : {
         type: String,
         default: ''
@@ -8,14 +8,10 @@ const UserSchema = new mongoose.Schema({
     lastName : {
         type: String,
         default: ''
-    },
-    idAuthorized: {
-        type: Number,
-        default: 0
     }
 
 }, {timestamps: true});
 
 
-const Users = mongoose.model('USERS', UserSchema, 'USERS');
-module.exports = Users;
+const Guests = mongoose.model('GUESTS', GuestSchema, 'GUESTS');
+module.exports = Guests;

@@ -1,15 +1,15 @@
 const mongoose = require('mongoose');
 
-const UserSchema = new mongoose.Schema({
-    firstName : {
+const TeamSchema = new mongoose.Schema({
+    name : {
         type: String,
         default: ''
     },
-    lastName : {
+    ownerId : {
         type: String,
         default: ''
     },
-    idAuthorized: {
+    totalConferenceTime : {
         type: Number,
         default: 0
     }
@@ -17,5 +17,5 @@ const UserSchema = new mongoose.Schema({
 }, {timestamps: true});
 
 
-const Users = mongoose.model('USERS', UserSchema, 'USERS');
-module.exports = Users;
+const Teams = mongoose.model('TEAMS', TeamSchema, 'TEAMS');
+module.exports = Teams;
